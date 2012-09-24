@@ -21,17 +21,17 @@ public class ButtonPanel extends JPanel implements ActionListener {
         
         this.progressBar = new JProgressBar(0, 50);
         this.add(this.progressBar, BorderLayout.NORTH);
+        
+        /* Timer with 5 sec delay, to go back to green */
+        timerGroen = new Timer(5000, new TimerGroenAction());
+        timerProgress = new Timer(100, new TimerProgressAction());
     }
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == rood) {
             sl.springOp(StopLicht.ROOD);
-            
-            /* Timer with 5 sec delay, to go back to green */
-            timerGroen = new Timer(5000, new TimerGroenAction());
+           
             timerGroen.start();
-            
-            timerProgress = new Timer(100, new TimerProgressAction());
             timerProgress.start();
         }
     }
